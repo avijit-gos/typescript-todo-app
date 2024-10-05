@@ -1,13 +1,13 @@
 /** @format */
 
-import express, { Request, Response, NextFunction } from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import logger from "morgan";
-import helmet from "helmet";
-import CreateError from "http-errors";
-import fileUpload from "express-fileupload";
-import databaseInit from "./config/database.config";
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import logger from 'morgan';
+import helmet from 'helmet';
+import CreateError from 'http-errors';
+import fileUpload from 'express-fileupload';
+import databaseInit from './config/database.config';
 dotenv.config();
 databaseInit();
 
@@ -15,24 +15,24 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(helmet());
 app.use(
   fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 },
     useTempFiles: true,
-    tempFileDir: "/tmp/",
-  })
+    tempFileDir: '/tmp/',
+  }),
 );
 
-import UserRoute from "./routes/user.routes";
-app.use("/api/v1/user", UserRoute);
+import UserRoute from './routes/user.routes';
+app.use('/api/v1/user', UserRoute);
 
 app.use(async (req: Request, res: Response, next: NextFunction) => {
-  next(CreateError.NotFound("Page not found"));
+  next(CreateError.NotFound('Page not found'));
 });
 // Error message
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, req: Request, res: Response) => {
   res.status(err.status || 500);
   res.send({
     error: {
