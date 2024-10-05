@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /** @format */
 
 import express, { Request, Response, NextFunction } from 'express';
@@ -28,11 +29,15 @@ app.use(
 import UserRoute from './routes/user.routes';
 app.use('/api/v1/user', UserRoute);
 
+import TaskRoute from './routes/task.routes';
+app.use('/api/v1/task', TaskRoute);
+
 app.use(async (req: Request, res: Response, next: NextFunction) => {
   next(CreateError.NotFound('Page not found'));
 });
 // Error message
-app.use((err: any, req: Request, res: Response) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(err.status || 500);
   res.send({
     error: {

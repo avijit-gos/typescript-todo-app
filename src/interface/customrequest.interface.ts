@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /** @format */
 import { Request } from "express";
 // import { UploadedFile } from "express-fileupload";
