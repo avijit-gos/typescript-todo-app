@@ -1,0 +1,31 @@
+# Ignore node modules to avoid copying unnecessary files
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore TypeScript build outputs (if you use `tsc`)
+dist
+build
+
+# Ignore local environment variables
+.env
+
+# Ignore logs
+logs
+*.log
+
+# Ignore Dockerfile and related configs (not needed inside the container)
+Dockerfile
+docker-compose.yml
+
+# Ignore test coverage files
+coverage
+
+# Ignore configuration files related to IDEs and editors
+.vscode
+.idea
+.DS_Store
+
+# Ignore Git and Git-related files
+.git
+.gitignore
